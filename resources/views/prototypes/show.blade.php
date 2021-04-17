@@ -1,34 +1,40 @@
 @extends("layouts.app")
 @section("content")
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                詳細画面
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>id</th>
-                            <td>{{$prototype->id}}</td>
-                        </tr>
-                        <tr>
-                            <th>title</th>
-                            <td>{{$prototype->title}}</td>
-
-                            <th>catch_copy</th>
-                            <td>{{$prototype->catch_copy}}</td>
-
-                            <th>concept</th>
-                            <td>{{$prototype->concept}}</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-                <a href="{{ url('prototypes') }}" class="btn btn-info">戻る</a>
-            </div>
+<main class="main">
+  <div class="inner">
+    <div class="prototype__wrapper">
+      <p class="prototype__hedding">
+        <div>{{$prototype->title}}</div>
+      </p>
+      <%= link_to "by プロトタイプの投稿者", root_path, class: :prototype__user %>
+      @auth
+        <div class="prototype__manage">
+          <a href="{{ url('prototypes/' . $prototype->id . '/edit') }}" class="prototype__btn">編集</a>
+          <form method="POST" action="/prototypes/{{ $prototype->id }}">
+            @csrf
+            @method('DELETE')
+            <button class="prototype__btn" type="submit">削除</button>
+          </form>
         </div>
+      @endauth
+      <div class="prototype__image">
+        <img src="/images/test.png">
+      </div>
+      <div class="prototype__body">
+        <div class="prototype__detail">
+          <p class="detail__title">キャッチコピー</p>
+          <p class="detail__message">
+            <div>{{$prototype->catch_copy}}</div>
+          </p>
+        </div>
+        <div class="prototype__detail">
+          <p class="detail__title">コンセプト</p>
+          <p class="detail__message">
+            <div>{{$prototype->concept}}</div>
+          </p>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</main>
 @endsection

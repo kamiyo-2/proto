@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PrototypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+// Route::resource('prototypes', PrototypeController::class);
+
+Route::get('/prototypes', [PrototypeController::class, 'index']);
+Route::get('/prototypes/create', [PrototypeController::class, 'create']);
+Route::post('/prototypes', [PrototypeController::class, 'store']);
+

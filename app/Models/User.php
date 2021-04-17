@@ -41,8 +41,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function prototyps() 
+    public function prototypes() 
     {
-        return $this->hasMany('App\Models\Prototyp');
+        return $this->hasMany('App\Models\Prototype');
     }
 }

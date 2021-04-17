@@ -29,4 +29,11 @@ require __DIR__.'/auth.php';
 Route::get('/prototypes', [PrototypeController::class, 'index']);
 Route::get('/prototypes/create', [PrototypeController::class, 'create']);
 Route::post('/prototypes', [PrototypeController::class, 'store']);
+Route::get('/prototypes/{id}', [PrototypeController::class, 'show']);
+Route::get('/prototypes/{id}/edit', [PrototypeController::class, 'edit']);
+Route::put('/prototypes/{id}', [PrototypeController::class, 'update']);
+Route::delete('/prototypes/{id}/', [PrototypeController::class, 'destroy']);
+
+
+
 
